@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Clock</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!--  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+    <!-- Creo el nav donde solo ira el texto Learning Clock -->
+    <header>
+        <nav>
+            <h1>LEARNING CLOCK</h1>
+        </nav>
+    </header>
+    <!-- Creo el slider y sus elementos como el texto h1 y el boton -->
+    <section class="slider-container">
+        <div class="slider-elements">
+            <h1>Toma conciencia de tu <span>tiempo</span> para <br />
+                así aprovecharlo de la <span>mejor</span> manera
+            </h1>
+            <a href="#before-timer">
+                <div class="button">
+                    <p>Empezar</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+    <!-- Texto de instruccion antes de el contenedor eleccion de tiempos -->
+    <section class="instruction" id="before-timer">
+        <h1>Elige los tiempos adecuados para ti</h1>
+    </section>
+
+    <!-- el main-container del temporizador inactivo -->
+    <section class="clock-container inact animate__animated" id="inactive">
+        <!-- el contenedor del cronometro con las correspondientes opciones y botones  -->
+        <div class="clock">
+            <div class="bar">
+                <p>Estudio</p>
+                <!-- contenedor en el cual se encuentran las opciones -->
+                <div class="options">
+                    <ul>
+                        <li class="options-li s 15m">15m</li>
+                        <li class="options-li s 30m">30m</li>
+                        <li class="options-li s 1h">1h</li>
+                        <li class="options-li s 2h">2h</li>
+                        <li class="options-li s 3h">3h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bar">
+                <p>Descanso</p>
+                <!-- contenedor en el cual se encuentran las opciones -->
+                <div class="options">
+                    <ul>
+                        <li class="options-li b 5m">5m</li>
+                        <li class="options-li b 10m">10m</li>
+                        <li class="options-li b 15m">15m</li>
+                        <li class="options-li b 30m">30m</li>
+                        <li class="options-li b 1h">1h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bar">
+                <p>Repeticiones</p>
+                <!-- contenedor en el cual se encuentran las opciones -->
+                <div class="options">
+                    <ul>
+                        <li class="options-li r 1rep">1</li>
+                        <li class="options-li r 2rep">2</li>
+                        <li class="options-li r 3rep">3</li>
+                        <li class="options-li r 4rep">4</li>
+                        <li class="options-li r 5rep">5</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- boton -->
+            <div class="buttons">
+                <div class="button timer" id="start">
+                    <p>A estudiar!</p>
+                </div>
+            </div>
+            <p id="error">Selecciona correctamente</p>
+        </div>
+    </section>
+
+
+
+    <!-- el main-container del temporizador en funcionamiento -->
+    <section class="clock-container act animate__animated" id="active">
+
+        <!-- el contenedor del temporizador con las correspondientes opciones y botones  -->
+
+        <div class="clock">
+            <div class="time-text">
+                <p id="time-left">Tiempo Restante:</p>
+            </div>
+
+            <!-- el contenedor donde estara el texto del temporizador funcionando -->
+            <div class="time">
+                <div class="timer-text" id="hour">00</div>
+                <div class="timer-text">:</div>
+                <div class="timer-text" id="minutes">00</div>
+                <div class="timer-text">:</div>
+                <div class="timer-text" id="seconds">00</div>
+            </div>
+
+            <!-- botones -->
+            <div class="buttons">
+
+                <div class="button timer" id="pause">
+                    <p>Pausar</p>
+                </div>
+
+                <div class="button timer" id="re-start">
+                    <p>Reanudar</p>
+                </div>
+
+                <div class="button timer" id="stop">
+                    <p>Detener</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- -----------el main del contenedor del temporizador finalizado------------- -->
+
+    <!-- el main-container del temporizador en funcionamiento -->
+    <section class="clock-container last animate__animated" id="done">
+
+        <!-- el contenedor del temporizador con las correspondientes opciones y botones  -->
+
+        <div class="clock">
+
+            <!-- texto -->
+            <div class="time-text">
+                <p>Has completado</p>
+            </div>
+
+            <!-- el contenedor donde estara el texto del temporizador funcionando -->
+            <div class="time">
+                <div id="time-done"> 0h y 0m </div>
+            </div>
+
+            <!-- texto -->
+            <div class="time-text">
+                <p>Felicidades!</p>
+            </div>
+
+
+            <!-- boton -->
+            <div class="buttons">
+                <div class="button timer" id="start-again">
+                    <p id="start-again">Volver <br> a empezar</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Texto de instruccion antes de el contenedor eleccion de tiempos -->
+    <section class="instruction" id="before-timer">
+        <h1>Por que es importante <br> concientizar nuestro tiempo?</h1>
+    </section>
+
+    <!--  -->
+    <section class="benefits">
+        <div class="productivity">
+            <img src="assets/productivity.jpg" alt="chico estudiando">
+            <div class="info">
+                <h1>Eficiencia y Productividad</h1>
+                <h2> Concienciarnos sobre el uso del <span>tiempo</span>  nos permite priorizar actividades, optimizándolo para alcanzar metas personales, profesionales y sociales. Identificar y eliminar actividades poco productivas nos ayuda a dedicar más <span>tiempo</span> a aquellas que realmente contribuyen a nuestros objetivos.</h2>
+            </div>
+        </div>
+        <div class="healthy">
+            <img src="assets/healthy.jpg" alt="chica en la naturaleza">
+            <div class="info">
+                <h1>Bienestar y Calidad de Vida</h1>
+                <h2>Ser conscientes del <span>tiempo</span> nos lleva a valorarlo más, lo que conlleva a una mayor satisfacción personal y calidad de vida. Al distribuir nuestro <span>tiempo</span> de manera consciente, podemos tomar decisiones informadas sobre nuestras prioridades y reducir el estrés. </h2>
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- Creo el footer con un eslogan final y un contenedor con los iconos de lk y gh -->
+    <footer>
+        <h1>"Concientizar nuestro tiempo es el primer paso <br> hacia una vida más
+            organizada y satisfactoria."</h1>
+        <div class="icons-footer">
+            <ul>
+                <li>
+                    <a href="https://www.linkedin.com/in/diegoecduran" target="_blank"><ion-icon name="logo-linkedin"
+                            id="linkedin"></ion-icon></a>
+                </li>
+                <li id="github">
+                    <a href="https://github.com/diegoCardenas03" target="_blank"><ion-icon name="logo-github"
+                            id="github"></ion-icon></a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Importo mi codigo javascript -->
+    <script src="js/script.js"></script>
+
+    <!-- Importo los iconos de ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

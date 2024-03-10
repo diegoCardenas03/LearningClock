@@ -1,0 +1,1220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Quito el padding, margin, oculto la barra de desplazamiento, quito el predeterminado estilo de listas y evito que se pueda copiar el texto de la pagina para asi evitar que salga esa tipica seleccion azul al tratar de arrastrar un texto*/
+* {
+    margin: 0;
+    padding: 0;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari, Chrome, Chrome Android, Baidu, Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE 10+ and Edge */
+    user-select: none;
+    /* Standard syntax */
+
+    list-style: none;
+
+    /* */
+    scroll-behavior: smooth;
+
+    /*  */
+    a {
+        color: inherit;
+    }
+}
+
+/* Coloco el color de fondo, color del texto predeterminadamente en el body y la fuente de letra */
+body {
+    background-color: #D9D9D9;
+    color: #FFFFFF;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Le agrego padding al nav, un color de fondo y centro el texto */
+header nav {
+    background-color: #5BC0BE;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+/* Le aumento el weight al texto y lo hago mas grande */
+header nav h1 {
+    font-size: 32px;
+    font-weight: 900;
+}
+
+/* Le agrego la imagen al slider y la acomodo debidamente */
+.slider-container {
+    width: 100%;
+    /* height: calc(100vh - 68px); */
+    height: calc(100vh - 68px);
+    background-image: url('../assets/imagen-slider.jpg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Alineo los elementos y los centro*/
+.slider-elements {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 32px;
+
+}
+
+/* Le asigno al span el color verde para hacer enfasis en las palabras necesarias */
+span {
+    color: #5BC0BE;
+    font-weight: 900;
+}
+
+/* Le coloco los estilos al h1 del slider */
+.slider-elements h1 {
+    font-size: 48px;
+    line-height: 60px;
+    text-shadow: 0 0 20px black;
+}
+
+/* le coloco los estilos al button, color, padding, shadow y transiciones */
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5BC0BE;
+    border-radius: 10px;
+    /* padding: 12px 20px; */
+    width: 130px;
+    height: 55px;
+    box-shadow: 0px 0px 20px black;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+
+/* le coloco el color a la transicion del boton */
+.button:hover {
+    background-color: #5DFAC2;
+}
+
+/*  le coloco los estilos al texto del boton  */
+.button p {
+    font-size: 20px;
+    font-weight: 900;
+    text-shadow: 1px 1px 1px black;
+    transition: color 1s;
+    cursor: pointer;
+}
+
+/* Alineo el texto en el centro y le agrego un margin top y bottom */
+.instruction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0;
+}
+
+/* Le agrego estilos al texto, le cambio el color y le agrando el tamaño  */
+.instruction h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 900;
+    color: #5BC0BE;
+}
+
+/* -------------- Estilos generales en el temporizador -------------- */
+
+/* Tamano de los botones dentro del temporizador */
+.timer {
+    width: 140px;
+    height: 60px;
+}
+
+/* el contenedor del temporizador inactivo predeterminadamente se muestra */
+#inactive {
+    display: flex;
+}
+
+/* Con una funcion se cambiara el display para mostrar este y ocultar el inactivo temporizador */
+#active {
+    display: none;
+}
+
+/* Contenedor del temporizador finalizado */
+#done {
+    display: none;
+}
+
+/* mensaje de error si se elige mal o no se elige */
+#error {
+    display: none;
+    position: absolute;
+    /* margin-top: 26.5em; */
+    top: 78em;
+    color: rgb(255, 0, 0);
+    animation: fadeIn 0.5s;
+
+}
+
+
+/* -----------Contenedor temporizador inactivo---------- */
+
+
+
+/* creo el main container del cronometro */
+.clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* le agrego estilos contenedor del cronometro, como centrar elementos, el background y la distancia entre sus elementos */
+.clock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.26);
+    width: 400px;
+    height: 350px;
+    padding: 50px 16px;
+    gap: 48px;
+}
+
+/*padding al contenedor hijo temporizador */
+.clock {
+    padding: 50px 16px;
+}
+
+/* Le agrego estilos al barra de opciones */
+.bar {
+    padding: 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    width: 100%;
+}
+
+/* le agrego estilos a los parrafos de las barras */
+.bar p {
+    font-size: 20px;
+    font-weight: 800;
+    color: black;
+    margin-left: 8px;
+}
+
+/* le agrego estilos al ul*/
+.bar ul {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 16px;
+    margin-right: 8px;
+
+}
+
+/* le agrego los colores a los textos de las listas y una transicion para el hover */
+.bar ul li {
+    color: black;
+    font-weight: 600;
+    transition: color 0.5s;
+    cursor: pointer;
+}
+
+/* le quito la sombra al boton en el cronometro */
+.clock .button {
+    box-shadow: none;
+}
+
+/* le agrego un hover a cada opcion*/
+.bar ul li:hover {
+    color: #5DFAC2;
+}
+
+/* clase que cambia el color del texo que se le asignara a la opcion seleccionada mediante una funcion*/
+.changeColorLi {
+    color: #5DFAC2 !important;
+}
+
+/* -----------------Contenedor del texto del temporizador funcionando--------------- */
+
+
+/* Texto tiempo restante  */
+.time-text p {
+    color: #000000;
+    line-height: 18px;
+    /* font-size: 25px; */
+    font-size: 38px;
+    font-weight: 900;
+}
+
+/* texto del temporizador que estaran cambiando cada segundo */
+.time {
+    display: flex;
+    flex-direction: row;
+}
+
+/* estilos al tiempo del temporizador */
+.time div {
+    color: #5BC0BE;
+    font-size: 50px;
+    font-weight: 900;
+}
+
+/* color al que se cambiara el texto del temporizador cuando este se pause  */
+.timePaused-color {
+    color: #FF9E41 !important;
+
+}
+
+/* color al que se cambiara el texto del temporizador cuando este se pause  */
+.timeBreak-color {
+    color: #c0be5b !important;
+
+}
+
+
+/*  los botones pausar y detener  */
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+/* color y transicion hover del boton de pausa */
+#pause {
+    background-color: #FF9E41;
+    transition: background-color 0.5s;
+}
+
+#pause:hover {
+    background-color: #ffbb7c;
+}
+
+/* color y transicion hover del boton de detener */
+#stop {
+    background-color: #FC3F5A;
+    transition: background-color 0.5s;
+}
+
+#stop:hover {
+    background-color: #ff647c;
+}
+
+/* Boton para reanudar una vez que se pause el temporizador */
+#re-start {
+    background-color: #5BC0BE;
+    display: none;
+    transition: background-color 0.5s;
+}
+
+/* Hover del boton reanudar */
+#re-start:hover {
+    background-color: #5DFAC2;
+}
+
+/* -----------------Contenedor del texto del temporizador funcionando--------------- */
+
+/* texto del boton volver a empezar */
+#start-again p {
+    font-size: 18px;
+    text-align: center;
+}
+
+/* centro en el medio el texto dell tiempo transcurrido */
+#time-done {
+    text-align: center;
+}
+
+
+/* -----------------------La importancia de concientizar el tiempo---------------------- */
+
+/* Estilos al main-contenedor de la informacion */
+.benefits {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 600px;
+}
+
+/* estilos a los contendores con la informacion de las dos claves */
+.benefits .productivity,
+.benefits .healthy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 500px;
+    height: 0px;
+}
+
+/* estilos a las imagenes de la informacion  */
+img {
+    width: 500px;
+    height: 300px;
+    box-shadow: 0 0 10px black;
+}
+
+/* hago flex el div con los elementos de texto */
+.benefits .info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    gap: 8px;
+}
+
+/* estilos al titulo de la info */
+.benefits h1 {
+    color: #5BC0BE;
+    font-size: 34px;
+    font-weight: 900;
+}
+
+/* estilos al texto largo de informacion */
+.benefits h2 {
+    color: #5BC0BE;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+
+
+/* --------------FOOTER---------------------- */
+
+/* Le agrego estilos al footer como el background, padding, flex y distancia entre sus elementos */
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+    background-color: #5BC0BE;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    gap: 32px;
+}
+
+/* Agrando el texto del footer y le coloco una sombra */
+footer h1 {
+    font-size: 30px;
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.61);
+}
+
+/* le doy flex en filas al footer y defino la distancia entre los elementos */
+.icons-footer ul {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+/* coloco el cursor como pointer y le asigno un tamaño a los iconos  */
+.icons-footer li {
+    cursor: pointer;
+    font-size: 35px;
+}
+
+/* le asigo el color al icono y una transicion para su posterior hover */
+.icons-footer a #linkedin {
+    color: #185A7A;
+    transition: color 0.5s;
+}
+
+.icons-footer a #linkedin:hover {
+    color: #2991c5;
+}
+
+/* le asigo el color al icono y una transicion para su posterior hover */
+.icons-footer a #github {
+    color: #24292E;
+    transition: color 0.5s;
+}
+
+.icons-footer a #github:hover {
+    color: #74818b;
+}
+
+/* le quito la decoracion predeterminada a los links*/
+a {
+    text-decoration: none;
+}
+
+
+
+
+@media (max-width: 1200px) {
+
+    /* estilos a los contendores con la informacion de las dos claves */
+    .benefits .productivity,
+    .benefits .healthy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        width: 400px;
+        height: 0px;
+    }
+
+    /* estilos a las imagenes de la informacion  */
+    img {
+        width: 400px;
+        height: 300px;
+        box-shadow: 0 0 10px black;
+    }
+
+}
+
+
+
+/* Las siguientes medias son para ajustar los elementos segun la pantalla en la que se vean */
+
+@media (max-width: 1050px) {
+
+    /* Le coloco los estilos al h1 del slider restandole -8 al original */
+    .slider-elements h1 {
+        font-size: 40px;
+        line-height: 52px;
+        text-shadow: 0 0 20px black;
+    }
+
+    /* le coloco los estilos al button, color, padding, shadow y transiciones */
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #5BC0BE;
+        border-radius: 10px;
+        /* padding: 12px 20px; */
+        width: 125px;
+        height: 55px;
+        box-shadow: 0px 0px 20px black;
+        transition: background-color 0.5s;
+        cursor: pointer;
+    }
+
+
+    /*  le coloco los estilos al texto del boton restandole -4 al original  */
+    .button p {
+        font-size: 18px;
+        font-weight: 900;
+        text-shadow: 1px 1px 1px black;
+        transition: color 1s;
+        cursor: pointer;
+    }
+
+
+    /* Le agrego estilos al texto, le cambio el color y le agrando el tamaño*/
+    .instruction h1 {
+        font-size: 36px;
+        font-weight: 900;
+        color: #5BC0BE;
+    }
+
+    /* Texto tiempo restante  */
+    .time-text p {
+        color: #000000;
+        line-height: 18px;
+        /* font-size: 25px; */
+        font-size: 34px;
+        font-weight: 900;
+    }
+
+    /* estilos al tiempo del temporizador */
+    .time div {
+        color: #5BC0BE;
+        font-size: 47px;
+        font-weight: 900;
+    }
+
+    /* texto del boton volver a empezar */
+    #start-again p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    /* Estilos al main-contenedor de la informacion */
+    .benefits {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 16px;
+        height: 600px;
+    }
+
+    /* estilos a los contendores con la informacion de las dos claves */
+    .benefits .productivity,
+    .benefits .healthy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        width: 350px;
+        height: 0px;
+    }
+
+    /* estilos a las imagenes de la informacion  */
+    img {
+        width: 350px;
+        height: 300px;
+        box-shadow: 0 0 10px black;
+    }
+
+    /* hago flex el div con los elementos de texto */
+    .benefits .info {
+        display: flex;
+        flex-direction: column;
+        padding-top: 16px;
+        gap: 8px;
+    }
+
+    /* estilos al titulo de la info */
+    .benefits h1 {
+        color: #5BC0BE;
+        font-size: 30px;
+        font-weight: 900;
+    }
+
+    /* estilos al texto largo de informacion */
+    .benefits h2 {
+        color: #5BC0BE;
+        font-size: 19px;
+        font-weight: 500;
+    }
+
+}
+
+
+
+@media (max-width: 780px) {
+
+    /* Le aumento el weight al texto y lo hago mas grande */
+    header nav h1 {
+        font-size: 28px;
+        font-weight: 900;
+    }
+
+    /* Le coloco los estilos al h1 del slider restandole -8 al original */
+    .slider-elements h1 {
+        font-size: 32px;
+        line-height: 44px;
+        text-shadow: 0 0 20px black;
+    }
+
+    /* le coloco los estilos al button, color, padding, shadow y transiciones */
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #5BC0BE;
+        border-radius: 10px;
+        /* padding: 12px 20px; */
+        width: 122px;
+        height: 55px;
+        box-shadow: 0px 0px 20px black;
+        transition: background-color 0.5s;
+        cursor: pointer;
+    }
+
+
+    /*  le coloco los estilos al texto del boton restandole -4 al original  */
+    .button p {
+        font-size: 16px;
+        font-weight: 900;
+        text-shadow: 1px 1px 1px black;
+        transition: color 1s;
+        cursor: pointer;
+    }
+
+    /* Le agrego estilos al texto, le cambio el color y le agrando el tamaño*/
+    .instruction h1 {
+        font-size: 32px;
+        font-weight: 900;
+        color: #5BC0BE;
+    }
+
+    /* Texto tiempo restante  */
+    .time-text p {
+        color: #000000;
+        line-height: 18px;
+        /* font-size: 25px; */
+        font-size: 32px;
+        font-weight: 900;
+    }
+
+    /* estilos al tiempo del temporizador */
+    .time div {
+        color: #5BC0BE;
+        font-size: 44px;
+        font-weight: 900;
+    }
+
+    /* texto del boton volver a empezar */
+    #start-again p {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* Agrando el texto del footer y le coloco una sombra */
+    footer h1 {
+        font-size: 25px;
+        font-weight: 900;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.61);
+    }
+
+    /* le doy flex en filas al footer y defino la distancia entre los elementos */
+    .icons-footer ul {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    /* coloco el cursor como pointer y le asigno un tamaño a los iconos  */
+    .icons-footer li {
+        cursor: pointer;
+        font-size: 30px;
+    }
+
+    /* estilos a los contendores con la informacion de las dos claves */
+    .benefits .productivity,
+    .benefits .healthy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        width: 280px;
+        height: 0px;
+    }
+
+    /* estilos a las imagenes de la informacion  */
+    img {
+        width: 280px;
+        height: 300px;
+        box-shadow: 0 0 10px black;
+    }
+
+    /* hago flex el div con los elementos de texto */
+    .benefits .info {
+        display: flex;
+        flex-direction: column;
+        padding-top: 16px;
+        gap: 8px;
+    }
+
+    /* estilos al titulo de la info */
+    .benefits h1 {
+        color: #5BC0BE;
+        font-size: 28px;
+        font-weight: 900;
+    }
+
+    /* estilos al texto largo de informacion */
+    .benefits h2 {
+        color: #5BC0BE;
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    /* Le aumento el weight al texto y lo hago mas grande */
+    header nav h1 {
+        font-size: 24px;
+        font-weight: 900;
+    }
+
+    /* Le coloco los estilos al h1 del slider restandole -8 al original */
+    .slider-elements h1 {
+        font-size: 24px;
+        line-height: 36px;
+        text-shadow: 0 0 20px black;
+    }
+
+    /* Le agrego estilos al texto, le cambio el color y le agrando el tamaño */
+    .instruction h1 {
+        font-size: 24px;
+        font-weight: 900;
+        color: #5BC0BE;
+    }
+
+    /* Texto tiempo restante  */
+    .time-text p {
+        color: #000000;
+        line-height: 18px;
+        /* font-size: 25px; */
+        font-size: 28px;
+        font-weight: 900;
+    }
+
+    /* estilos al tiempo del temporizador */
+    .time div {
+        color: #5BC0BE;
+        font-size: 40px;
+        font-weight: 900;
+    }
+
+    /* texto del boton volver a empezar */
+    #start-again p {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    /* le coloco los estilos al button, color, padding, shadow y transiciones */
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #5BC0BE;
+        border-radius: 10px;
+        /* padding: 12px 20px; */
+        width: 105px;
+        height: 50px;
+        box-shadow: 0px 0px 20px black;
+        transition: background-color 0.5s;
+        cursor: pointer;
+    }
+
+
+    /*  le coloco los estilos al texto del boton restandole -4 al original  */
+    .button p {
+        font-size: 14px;
+        font-weight: 900;
+        text-shadow: 1px 1px 1px black;
+        transition: color 1s;
+        cursor: pointer;
+    }
+
+    /* le agrego estilos contenedor del cronometro, como centrar elementos, el background y la distancia entre sus elementos */
+    .clock {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.26);
+        width: 300px;
+        padding: 50px 16px;
+        gap: 32px;
+    }
+
+
+
+    /* le agrego estilos a los parrafos de las barras */
+    .bar p {
+        font-size: 14px;
+        font-weight: 800;
+        color: black;
+        margin-left: 8px;
+    }
+
+
+    /* le agrego los colores a los textos de las listas y una transicion para el hover */
+    .bar ul li {
+        color: black;
+        font-size: 12px;
+        font-weight: 600;
+        list-style: none;
+        transition: color 0.5s;
+        cursor: pointer;
+    }
+
+
+    /* Agrando el texto del footer y le coloco una sombra */
+    footer h1 {
+        font-size: 18px;
+        font-weight: 900;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.61);
+    }
+
+    /* le doy flex en filas al footer y defino la distancia entre los elementos */
+    .icons-footer ul {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    /* coloco el cursor como pointer y le asigno un tamaño a los iconos  */
+    .icons-footer li {
+        cursor: pointer;
+        font-size: 28px;
+    }
+
+    /* Estilos al main-contenedor de la informacion */
+    .benefits {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 16px;
+        height: 700px;
+    }
+
+    /* estilos a los contendores con la informacion de las dos claves */
+    .benefits .productivity,
+    .benefits .healthy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        width: 200px;
+        height: 0px;
+    }
+
+    /* estilos a las imagenes de la informacion  */
+    img {
+        width: 200px;
+        height: 300px;
+        box-shadow: 0 0 10px black;
+    }
+
+    /* hago flex el div con los elementos de texto */
+    .benefits .info {
+        display: flex;
+        flex-direction: column;
+        padding-top: 16px;
+        gap: 8px;
+    }
+
+    /* estilos al titulo de la info */
+    .benefits h1 {
+        color: #5BC0BE;
+        font-size: 24px;
+        font-weight: 900;
+    }
+
+    /* estilos al texto largo de informacion */
+    .benefits h2 {
+        color: #5BC0BE;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+}
+
+@media (max-width: 462px) {
+
+    /* Le aumento el weight al texto y lo hago mas grande */
+    header nav h1 {
+        font-size: 20px;
+        font-weight: 900;
+    }
+
+    /* Le coloco los estilos al h1 del slider restandole -8 al original */
+    .slider-elements h1 {
+        font-size: 20px;
+        line-height: 32px;
+        text-shadow: 0 0 20px black;
+    }
+
+    /* Le agrego estilos al texto, le cambio el color y le agrando el tamaño*/
+    .instruction h1 {
+        font-size: 20px;
+        font-weight: 900;
+        color: #5BC0BE;
+    }
+
+    /* Texto tiempo restante  */
+    .time-text p {
+        color: #000000;
+        line-height: 18px;
+        /* font-size: 25px; */
+        font-size: 24px;
+        font-weight: 900;
+    }
+
+    /* estilos al tiempo del temporizador */
+    .time div {
+        color: #5BC0BE;
+        font-size: 35px;
+        font-weight: 900;
+    }
+
+    /* texto del boton volver a empezar */
+    #start-again p {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    /* le coloco los estilos al button, color, padding, shadow y transiciones */
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #5BC0BE;
+        border-radius: 10px;
+        /* padding: 12px 20px; */
+        width: 100px;
+        height: 45px;
+        box-shadow: 0px 0px 20px black;
+        transition: background-color 0.5s;
+        cursor: pointer;
+    }
+
+
+    /*  le coloco los estilos al texto del boton restandole -4 al original  */
+    .button p {
+        font-size: 13px;
+        font-weight: 900;
+        text-shadow: 1px 1px 1px black;
+        transition: color 1s;
+        cursor: pointer;
+    }
+
+    /* Agrando el texto del footer y le coloco una sombra */
+    footer h1 {
+        /* font-size: 20px; */
+        font-size: 3.5vw;
+        font-weight: 900;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.61);
+    }
+
+    /* le doy flex en filas al footer y defino la distancia entre los elementos */
+    .icons-footer ul {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    /* coloco el cursor como pointer y le asigno un tamaño a los iconos  */
+    .icons-footer li {
+        cursor: pointer;
+        /* font-size: 28px; */
+        font-size: 6vw;
+    }
+
+    /* Estilos al main-contenedor de la informacion */
+    .benefits {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 16px;
+        /* height: 700px; */
+        height: 120vw;
+    }
+
+    /* estilos a los contendores con la informacion de las dos claves */
+    .benefits .productivity,
+    .benefits .healthy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        /* width: 200px; */
+        width: 35vw;
+        height: 0px;
+    }
+
+    /* estilos a las imagenes de la informacion  */
+    img {
+        /* width: 200px; */
+        width: 35vw;
+        height: 300px;
+        box-shadow: 0 0 10px black;
+    }
+
+    /* hago flex el div con los elementos de texto */
+    .benefits .info {
+        display: flex;
+        flex-direction: column;
+        padding-top: 16px;
+        gap: 8px;
+    }
+
+   /* estilos al titulo de la info */
+    .benefits h1 {
+        color: #5BC0BE;
+        /* font-size: 24px; */
+        font-size: 4vw;
+        font-weight: 900;
+    }
+
+    /* estilos al texto largo de informacion */
+    .benefits h2 {
+        color: #5BC0BE;
+        /* font-size: 18px; */
+        font-size: 3vw;
+        font-weight: 500;
+    }
+
+}
+
+
+
+@media (max-width: 396px) {
+
+    /* Le aumento el weight al texto y lo hago mas grande */
+    header nav h1 {
+        /* font-size: 32px; */
+        font-size: 5vw;
+        font-weight: 900;
+    }
+
+    /* Le coloco los estilos al h1 del slider restandole -8 al original */
+    .slider-elements h1 {
+        /* font-size: 16px; */
+        font-size: 5vw;
+        line-height: 28px;
+        text-shadow: 0 0 20px black;
+    }
+
+    /* Le agrego estilos al texto, le cambio el color y le agrando el tamaño */
+    .instruction h1 {
+        /* font-size: 20px; */
+        font-size: 5vw;
+        font-weight: 900;
+        color: #5BC0BE;
+    }
+
+    /* Texto tiempo restante  */
+    .time-text p {
+        color: #000000;
+        line-height: 18px;
+        /* font-size: 22px; */
+        font-size: 6vw;
+        font-weight: 900;
+    }
+
+    /* estilos al tiempo del temporizador */
+    .time div {
+        color: #5BC0BE;
+        /* font-size: 35px; */
+        font-size: 8vw;
+        font-weight: 900;
+    }
+
+    /* texto del boton volver a empezar */
+    #start-again p {
+        /* font-size: 10px; */
+        font-size: 2vw;
+        text-align: center;
+    }
+
+    /* le coloco los estilos al button, color, padding, shadow y transiciones */
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #5BC0BE;
+        border-radius: 10px;
+        /* padding: 12px 20px; */
+        /* width: 100px; */
+        width: 23vw;
+        /* height: 45px; */
+        height: 11vw;
+        box-shadow: 0px 0px 20px black;
+        transition: background-color 0.5s;
+        cursor: pointer;
+    }
+
+
+    /*  le coloco los estilos al texto del boton restandole -4 al original  */
+    .button p {
+        /* font-size: 13px; */
+        font-size: 3vw;
+        font-weight: 900;
+        text-shadow: 1px 1px 1px black;
+        transition: color 1s;
+        cursor: pointer;
+    }
+
+    /* le agrego estilos contenedor del cronometro, como centrar elementos, el background y la distancia entre sus elementos */
+    .clock {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.26);
+        /* width: 300px; */
+        width: 75vw;
+        /* height: 85vw; */
+        padding: 50px 16px;
+        /* padding: 9vw 4vw; */
+
+        gap: 32px;
+    }
+
+    /* Le agrego estilos al barra de opciones */
+    .bar {
+        padding: 15px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #F5F5F5;
+        border-radius: 10px;
+        width: 100%;
+        gap: 10px;
+    }
+
+    /* le agrego estilos a los parrafos de las barras */
+    .bar p {
+        /* font-size: 14px; */
+        font-size: 3vw;
+        font-weight: 800;
+        color: black;
+        margin-left: 8px;
+    }
+
+
+    /* le agrego los colores a los textos de las listas y una transicion para el hover */
+    .bar ul li {
+        color: black;
+        /* font-size: 12px; */
+        font-size: 2.9vw;
+        font-weight: 600;
+        list-style: none;
+        transition: color 0.5s;
+        cursor: pointer;
+    }
+
+
+}
+
+/* media para que hacer en los dispositivos donde el hover no se vea */
+@media (hover: none) {
+    .icons-footer a #linkedin:hover {
+        color: #185A7A;
+    }
+
+    .icons-footer a #github:hover {
+        color: #24292E;
+    }
+
+    /* le coloco el color a la transicion del boton */
+    .slider-container .button:hover {
+        background-color: #5BC0BE;
+    }
+
+    /* le agrego un hover a cada opcion*/
+    .bar ul li:hover {
+        color: #000000;
+    }
+
+
+}
