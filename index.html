@@ -37,76 +37,82 @@
     </section>
 
     <!-- el main-container del temporizador inactivo -->
-    <section class="clock-container inact animate__animated" id="inactive">
+    <section class="clock-container inact animate__animated animate__slideInLeft" id="inactive">
         <!-- el contenedor del cronometro con las correspondientes opciones y botones  -->
         <div class="clock">
-            <div class="bar">
-                <p>Estudio</p>
-                <!-- contenedor en el cual se encuentran las opciones -->
-                <div class="options">
-                    <ul>
-                        <li class="options-li s 15m">15m</li>
-                        <li class="options-li s 30m">30m</li>
-                        <li class="options-li s 1h">1h</li>
-                        <li class="options-li s 2h">2h</li>
-                        <li class="options-li s 3h">3h</li>
-                    </ul>
+
+            <div class="clock-child">
+                <div class="bar">
+                    <p>Estudio</p>
+                    <!-- contenedor en el cual se encuentran las opciones -->
+                    <div class="options">
+                        <ul>
+                            <li class="options-li s 15m">15m</li>
+                            <li class="options-li s 30m">30m</li>
+                            <li class="options-li s 1h">1h</li>
+                            <li class="options-li s 2h">2h</li>
+                            <li class="options-li s 3h">3h</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="bar">
-                <p>Descanso</p>
-                <!-- contenedor en el cual se encuentran las opciones -->
-                <div class="options">
-                    <ul>
-                        <li class="options-li b 5m">5m</li>
-                        <li class="options-li b 10m">10m</li>
-                        <li class="options-li b 15m">15m</li>
-                        <li class="options-li b 30m">30m</li>
-                        <li class="options-li b 1h">1h</li>
-                    </ul>
+                <div class="bar">
+                    <p>Descanso</p>
+                    <!-- contenedor en el cual se encuentran las opciones -->
+                    <div class="options">
+                        <ul>
+                            <li class="options-li b 5m">5m</li>
+                            <li class="options-li b 10m">10m</li>
+                            <li class="options-li b 15m">15m</li>
+                            <li class="options-li b 30m">30m</li>
+                            <li class="options-li b 1h">1h</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="bar">
-                <p>Repeticiones</p>
-                <!-- contenedor en el cual se encuentran las opciones -->
-                <div class="options">
-                    <ul>
-                        <li class="options-li r 1rep">1</li>
-                        <li class="options-li r 2rep">2</li>
-                        <li class="options-li r 3rep">3</li>
-                        <li class="options-li r 4rep">4</li>
-                        <li class="options-li r 5rep">5</li>
-                    </ul>
+                <div class="bar">
+                    <p>Repeticiones</p>
+                    <!-- contenedor en el cual se encuentran las opciones -->
+                    <div class="options">
+                        <ul>
+                            <li class="options-li r 1rep">1</li>
+                            <li class="options-li r 2rep">2</li>
+                            <li class="options-li r 3rep">3</li>
+                            <li class="options-li r 4rep">4</li>
+                            <li class="options-li r 5rep">5</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <!-- boton -->
-            <div class="buttons">
-                <div class="button timer" id="start">
-                    <p>A estudiar!</p>
+                <!-- boton -->
+                <div class="buttons">
+                    <div class="button timer" id="start">
+                        <p>A estudiar!</p>
+                    </div>
+
                 </div>
             </div>
             <p id="error">Selecciona correctamente</p>
+
         </div>
     </section>
 
 
 
     <!-- el main-container del temporizador en funcionamiento -->
-    <section class="clock-container act animate__animated" id="active">
+    <section class="clock-container act animate__animated animate__slideInLeft" id="active">
 
         <!-- el contenedor del temporizador con las correspondientes opciones y botones  -->
 
         <div class="clock">
+            <div class="done-info">
             <div class="time-text">
                 <p id="time-left">Tiempo Restante:</p>
             </div>
 
             <!-- el contenedor donde estara el texto del temporizador funcionando -->
             <div class="time">
-                <div class="timer-text" id="hour">00</div>
-                <div class="timer-text">:</div>
+                <div class="timer-text" id="hour"></div>
+                <div class="timer-text" id="first-space"></div>
                 <div class="timer-text" id="minutes">00</div>
-                <div class="timer-text">:</div>
+                <div class="timer-text" id="second-space">:</div>
                 <div class="timer-text" id="seconds">00</div>
             </div>
 
@@ -128,41 +134,43 @@
             </div>
 
         </div>
+    </div>
     </section>
 
     <!-- -----------el main del contenedor del temporizador finalizado------------- -->
 
     <!-- el main-container del temporizador en funcionamiento -->
-    <section class="clock-container last animate__animated" id="done">
+    <section class="clock-container last animate__animated animate__slideInLeft" id="done">
 
         <!-- el contenedor del temporizador con las correspondientes opciones y botones  -->
 
         <div class="clock">
 
-            <!-- texto -->
-            <div class="time-text">
-                <p>Has completado</p>
-            </div>
-
-            <!-- el contenedor donde estara el texto del temporizador funcionando -->
-            <div class="time">
-                <div id="time-done"> 0h y 0m </div>
-            </div>
-
-            <!-- texto -->
-            <div class="time-text">
-                <p>Felicidades!</p>
-            </div>
-
-
-            <!-- boton -->
-            <div class="buttons">
-                <div class="button timer" id="start-again">
-                    <p id="start-again">Volver <br> a empezar</p>
+            <div class="done-info">
+                <!-- texto -->
+                <div class="time-text">
+                    <p>Has completado</p>
                 </div>
 
-            </div>
+                <!-- el contenedor donde estara el texto del temporizador funcionando -->
+                <div class="time">
+                    <div id="time-done"> 0h y 0m </div>
+                </div>
 
+                <!-- texto -->
+                <div class="time-text">
+                    <p>Felicidades!</p>
+                </div>
+
+
+                <!-- boton -->
+                <div class="buttons">
+                    <div class="button timer" id="start-again">
+                        <p id="start-again">Volver <br> a empezar</p>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </section>
 
@@ -178,14 +186,20 @@
             <img src="assets/productivity.jpg" alt="chico estudiando">
             <div class="info">
                 <h1>Eficiencia y Productividad</h1>
-                <h2> Concienciarnos sobre el uso del <span>tiempo</span>  nos permite priorizar actividades, optimizándolo para alcanzar metas personales, profesionales y sociales. Identificar y eliminar actividades poco productivas nos ayuda a dedicar más <span>tiempo</span> a aquellas que realmente contribuyen a nuestros objetivos.</h2>
+                <h2> Concienciarnos sobre el uso del <span>tiempo</span> nos permite priorizar actividades,
+                    optimizándolo para alcanzar metas personales, profesionales y sociales. Identificar y eliminar
+                    actividades poco productivas nos ayuda a dedicar más <span>tiempo</span> a aquellas que realmente
+                    contribuyen a nuestros objetivos.</h2>
             </div>
         </div>
         <div class="healthy">
             <img src="assets/healthy.jpg" alt="chica en la naturaleza">
             <div class="info">
                 <h1>Bienestar y Calidad de Vida</h1>
-                <h2>Ser conscientes del <span>tiempo</span> nos lleva a valorarlo más, lo que conlleva a una mayor satisfacción personal y calidad de vida. Al distribuir nuestro <span>tiempo</span> de manera consciente, podemos tomar decisiones informadas sobre nuestras prioridades y reducir el estrés. </h2>
+                <h2>Ser conscientes del <span>tiempo</span> nos lleva a valorarlo más, lo que conlleva a una mayor
+                    satisfacción personal y calidad de vida. Al distribuir nuestro <span>tiempo</span> de manera
+                    consciente, podemos tomar decisiones informadas sobre nuestras prioridades y reducir el estrés.
+                </h2>
             </div>
         </div>
 

@@ -6,6 +6,7 @@ function wait(ms) {
 // animate CSS, transiciones 
 
 const animateCSS = (element, animation, prefix = 'animate__') =>
+
     // We create a Promise and return it
     new Promise((resolve, reject) => {
         const animationName = `${prefix}${animation}`;
@@ -15,26 +16,27 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 
         // When the animation ends, we clean the classes and resolve the Promise
         function handleAnimationEnd(event) {
-            event.preventDefault();
+
             event.stopPropagation();
             node.classList.remove(`${prefix}animated`, animationName);
             resolve('Animation ended');
-            
+
         }
 
         node.addEventListener('animationend', handleAnimationEnd, { once: true });
 
-        
+
 
     });
 
 
 // inicio principalmente las transiciones iniciales para cada contenedor del temporizador
-animateCSS('.inact', 'bounceInRight');
 
-animateCSS('.act', 'bounceInRight');
+// animateCSS('.inact', 'bounceInRight');
 
-animateCSS('.last', 'bounceInRight');
+// animateCSS('.act', 'bounceInRight');
+
+// animateCSS('.last', 'bounceInRight');
 
 // inicializo la variable elements que contendra todos los elementos li de las opciones.
 var options = document.querySelectorAll('.options-li');
@@ -274,9 +276,7 @@ var timerActive = document.getElementById('active');
 var timerDone = document.getElementById('done');
 
 // inicializo las variables, contador de repeticiones, segundos, horas y minutos del temporizador
-var seconds = 0;
-var hour = 0;
-var minutes = 0;
+
 
 // inicializo en null la variable id de los intervalos
 var intervalId = null;
@@ -293,12 +293,19 @@ var timeLeft = document.getElementById('time-left');
 
 
 function startTimer() {
+
+
+    var seconds = 0;
+    var hour = 0;
+    var minutes = 0;
+
+    console.log('final study ' + finalStudyTime);
     // 
     var repCount = 0;
     var repSum = 0;
 
     // apenas inicia la funcion quito la transicion de salida, para que no se interponga en la de entrada
-    timerInactive.classList.remove('animate__animated', 'animate__bounceOutLeft');
+    timerInactive.classList.remove('animate__slideOutRight');
 
 
     // quito la visibilidad del texto de error
@@ -328,6 +335,10 @@ function startTimer() {
         seconds = 0;
     }
 
+    console.log('hora = ' + hour)
+
+    // if (hour != 0) {
+    document.getElementById('first-space').innerHTML = ':';
     // Hora siempre se le agregara un cero mas para que no quede solo un digito
     if (hour < 10) {
         document.getElementById('hour').innerHTML = '0' + hour;
@@ -335,6 +346,9 @@ function startTimer() {
     else {
         document.getElementById('hour').innerHTML = hour;
     }
+    // }
+
+
 
     // me aseguro de que siempre sean dos digitos, aunque los minutos sean menores de 10
     if (minutes < 10) {
@@ -352,6 +366,7 @@ function startTimer() {
         document.getElementById('seconds').innerHTML = seconds;
     }
 
+
     // oculto el contenedor inactivo y muestro el activo y quito las selecciones de las opciones del inactivo para un proximo uso.
     timerInactive.style.display = 'none';
     timerActive.style.display = 'flex';
@@ -360,6 +375,8 @@ function startTimer() {
     //Funcion del funcionamiento del temporizador
     let timerFunction = () => {
 
+        // if (hour >= 0) {
+        document.getElementById('first-space').innerHTML = ':';
         // Hora siempre se le agregara un cero mas para que no quede solo un digito
         if (hour < 10) {
             document.getElementById('hour').innerHTML = '0' + hour;
@@ -367,6 +384,9 @@ function startTimer() {
         else {
             document.getElementById('hour').innerHTML = hour;
         }
+        // }
+
+
 
         // me aseguro de que siempre sean dos digitos, aunque los minutos sean menores de 10
         if (minutes < 10) {
@@ -464,15 +484,15 @@ function startTimer() {
                 // Si ninguna se cumple termino el temporizador y le agrego la transicion al temporizador finalizado
                 else {
                     endTimer(repSum);
-                    animateCSS('.last', 'bounceInRight');
+                    // animateCSS('.last', 'bounceInRight');
 
                 }
             }
 
-           // Si ninguna se cumple termino el temporizador y le agrego la transicion al temporizador finalizado
+            // Si ninguna se cumple termino el temporizador y le agrego la transicion al temporizador finalizado
             else {
                 endTimer(repSum);
-                animateCSS('.last', 'bounceInRight');
+                // animateCSS('.last', 'bounceInRight');
             }
         }
 
@@ -536,7 +556,7 @@ function startTimer() {
     stopButton.addEventListener('click', function () {
 
         // le agrego la transicion de entrada al temporizador finalizado
-        animateCSS('.last', 'bounceInRight');
+        // animateCSS('.last', 'bounceInRight');
 
         // Detengo los intervalos
         clearInterval(intervalId);
@@ -554,8 +574,6 @@ function startTimer() {
 
         // console.log('studytime = ' + studyTime + ' repCount + ' + repCount + ' repSum = ' + repSum + ' hour = ' + hour + ' minutes =' + minutes);
 
-        console.log('repSum = ' + repSum);
-
         var timeFinished = (studyTime + repSum) - (hour + minutes);
 
         //funcion para calcular y imprimir correctamente el tiempo transcurrido
@@ -567,7 +585,7 @@ function startTimer() {
 
 // Funcion para cuando se de click al boton de volver a empezar
 startAgainButton.addEventListener('click', async function () {
-    
+
     // Si pause el temporizador y lo detuve verifico que vuelva a colocarse el button pause y ocultarse el boton reanudar para la proxima
     if (pauseButton.style.display == 'none') {
         pauseButton.style.display = 'flex';
@@ -575,41 +593,47 @@ startAgainButton.addEventListener('click', async function () {
     }
 
     // le agrego la transicion de entrada al temporizador inactivo y activo
-    animateCSS('.inact', 'bounceInRight');
-    animateCSS('.act', 'bounceInRight');
+    // animateCSS('.inact', 'bounceInRight');
+    // animateCSS('.act', 'bounceInRight');
 
     // le agrego la transicion de salida al temporizador finalizado y luego se la quito
-    done.classList.add('animate__animated', 'animate__bounceOutLeft');
+    timerInactive.classList.add('animate__animated', 'animate__slideInLeft');
+    done.classList.add('animate__animated', 'animate__slideOutRight');
     await wait(500);
 
     // oculto el temporizador finalizado y muestro la interfaz temporizador inactivo
     timerDone.style.display = 'none';
     timerInactive.style.display = 'flex';
 
-    done.classList.remove('animate__animated', 'animate__bounceOutLeft');
-
+    done.classList.remove('animate__slideOutRight');
+    
 });
 
 
 // si doy click en A estudiar! se inicia la funcion padre del temporizador
-start.addEventListener('click', async function () {
+startButton.addEventListener('click', async function () {
 
-    // si solamente se elegio una opcion de tiempo de estudio funcionara el temporizador pero si en cambio si no se elige finalBreakTime o si no se elige FinalRepTimes y se elige el otro de esos dos, no funcionara.
+    // si solamente se eligio una opcion de tiempo de estudio funcionara el temporizador pero si en cambio si no se elige finalBreakTime o si no se elige FinalRepTimes y se elige el otro de esos dos, no funcionara.
     if (finalStudyTime !== null && finalBreakTime === null && finalRepTimes === null) {
-        timerInactive.classList.add('animate__animated', 'animate__bounceOutLeft');
+
+        // timerInactive.classList.add('animate__animated', 'animate__bounceOutLeft');
+        timerInactive.classList.add('animate__animated', 'animate__slideOutRight');
         await wait(500);
         startTimer();
     }
     else if (finalStudyTime !== null && finalBreakTime !== null && finalRepTimes !== null) {
-        timerInactive.classList.add('animate__animated', 'animate__bounceOutLeft');
+        timerInactive.classList.add('animate__animated', 'animate__slideOutRight');
         await wait(500);
         startTimer();
     }
     else {
+        timerInactive.classList.remove('animate__animated', 'animate__slideInLeft');
         document.getElementById('error').style.display = 'flex';
     }
 
 });
+
+
 
 
 
@@ -688,7 +712,7 @@ async function endTimer(repSum) {
         timeDone.innerHTML = minutes + ' minutos';
     }
 
-    timerActive.classList.add('animate__animated', 'animate__bounceOutLeft');
+    timerActive.classList.add('animate__animated', 'animate__slideOutRight');
     await wait(500);
 
     // oculto el temporizador activo y muestro la interfaz para cuando termina el temporizador
@@ -696,7 +720,7 @@ async function endTimer(repSum) {
     timerDone.style.display = 'flex';
 
     // le remuevo la trnasicion de salida al temporizador activo
-    timerActive.classList.remove('animate__animated', 'animate__bounceOutLeft');
+    timerActive.classList.remove('animate__slideOutRight');
 
 }
 
@@ -769,14 +793,14 @@ async function printTimeDone(timeFinishedValue, hourValue, minutesValue, seconds
 
 
     // le a;ado el temporizador activo la transicion de salida.
-    timerActive.classList.add('animate__animated', 'animate__bounceOutLeft');
+    timerActive.classList.add('animate__animated', 'animate__slideOutRight');
     await wait(500);
 
     // oculto el temporizador activo y muestro la interfaz para cuando termina el temporizador
     timerActive.style.display = 'none';
     timerDone.style.display = 'flex';
 
-    timerActive.classList.remove('animate__animated', 'animate__bounceOutLeft');
+    timerActive.classList.remove('animate__slideOutRight');
 
     timerTexts.forEach(function (element) {
         if (element.classList.contains('timePaused-color')) {
@@ -784,7 +808,7 @@ async function printTimeDone(timeFinishedValue, hourValue, minutesValue, seconds
         }
     });
 
-   
+
 }
 
 

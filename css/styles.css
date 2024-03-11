@@ -165,11 +165,13 @@ span {
 /* mensaje de error si se elige mal o no se elige */
 #error {
     display: none;
-    position: absolute;
-    /* margin-top: 26.5em; */
-    top: 78em;
+    position: relative;
+    line-height: 0px;
+    bottom: 15px;
+    /* top: 90em; */
     color: rgb(255, 0, 0);
     animation: fadeIn 0.5s;
+    
 
 }
 
@@ -184,6 +186,7 @@ span {
     flex-direction: column;
     align-items: center;
     margin-bottom: 16px;
+
 }
 
 /* le agrego estilos contenedor del cronometro, como centrar elementos, el background y la distancia entre sus elementos */
@@ -198,13 +201,22 @@ span {
     width: 400px;
     height: 350px;
     padding: 50px 16px;
+    /* gap: 48px; */
+    
+}
+
+/* es el contenedor hijo donde agrego el gap para no perjudicar al texto de error que esta en una posicion absoluta */
+.clock-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    padding: 50px 16px;
     gap: 48px;
 }
 
-/*padding al contenedor hijo temporizador */
-.clock {
-    padding: 50px 16px;
-}
 
 /* Le agrego estilos al barra de opciones */
 .bar {
@@ -349,6 +361,15 @@ span {
     text-align: center;
 }
 
+/* Contenedor Done del Timer y timer funcionando para agregar el gap*/
+.done-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+}
+
 
 /* -----------------------La importancia de concientizar el tiempo---------------------- */
 
@@ -468,28 +489,10 @@ a {
 @media (max-width: 1200px) {
 
     /* estilos a los contendores con la informacion de las dos claves */
-    .benefits .productivity,
-    .benefits .healthy {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        width: 400px;
-        height: 0px;
-    }
-
-    /* estilos a las imagenes de la informacion  */
-    img {
-        width: 400px;
-        height: 300px;
-        box-shadow: 0 0 10px black;
-    }
+ 
+    
 
 }
-
-
-
 /* Las siguientes medias son para ajustar los elementos segun la pantalla en la que se vean */
 
 @media (max-width: 1050px) {
@@ -561,9 +564,10 @@ a {
         display: flex;
         justify-content: space-between;
         padding: 0 16px;
-        height: 600px;
+        height: 650px;
     }
 
+    
     /* estilos a los contendores con la informacion de las dos claves */
     .benefits .productivity,
     .benefits .healthy {
@@ -573,7 +577,6 @@ a {
         padding: 0;
         margin: 0;
         width: 350px;
-        height: 0px;
     }
 
     /* estilos a las imagenes de la informacion  */
@@ -604,6 +607,9 @@ a {
         font-size: 19px;
         font-weight: 500;
     }
+
+    /* mensaje de error si se elige mal o no se elige */
+    
 
 }
 
@@ -738,6 +744,9 @@ a {
         font-size: 18px;
         font-weight: 500;
     }
+
+    /* mensaje de error si se elige mal o no se elige */
+  
 }
 
 
@@ -820,7 +829,7 @@ a {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.26);
         width: 300px;
         padding: 50px 16px;
-        gap: 32px;
+        /* gap: 32px; */
     }
 
 
@@ -912,6 +921,18 @@ a {
         color: #5BC0BE;
         font-size: 18px;
         font-weight: 500;
+    }
+
+    #error {
+        display: none;
+        position: relative;
+        line-height: 0px;
+        bottom: 20px;
+        /* top: 90em; */
+        color: rgb(255, 0, 0);
+        animation: fadeIn 0.5s;
+        
+    
     }
 
 }
@@ -1045,7 +1066,7 @@ a {
         gap: 8px;
     }
 
-   /* estilos al titulo de la info */
+    /* estilos al titulo de la info */
     .benefits h1 {
         color: #5BC0BE;
         /* font-size: 24px; */
@@ -1060,6 +1081,7 @@ a {
         font-size: 3vw;
         font-weight: 500;
     }
+
 
 }
 
@@ -1156,7 +1178,7 @@ a {
         padding: 50px 16px;
         /* padding: 9vw 4vw; */
 
-        gap: 32px;
+        /* gap: 32px; */
     }
 
     /* Le agrego estilos al barra de opciones */
@@ -1193,6 +1215,19 @@ a {
         cursor: pointer;
     }
 
+    #error {
+        display: none;
+        position: relative;
+        line-height: 0px;
+        bottom: 10px;
+        font-size: 3.5vw;
+        /* top: 90em; */
+        color: rgb(255, 0, 0);
+        animation: fadeIn 0.5s;
+        
+    
+    }
+
 
 }
 
@@ -1217,4 +1252,9 @@ a {
     }
 
 
+
+}
+
+.algooo {
+    background-color: black;
 }
